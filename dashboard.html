@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Gather Tabs</title>
+    <link rel="stylesheet" href="dashboard.css" />
+    <script type="module" src="dashboard.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="收藏导航">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">G</span><span>Gather Tabs</span></div>
+        <div class="sidebar-search">
+          <label for="search" class="sr-only">搜索收藏</label>
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search" placeholder="搜索收藏" autocomplete="off" />
+          <kbd>/</kbd>
+        </div>
+        <div class="sidebar-section-label">工作区</div>
+        <nav id="collection-nav" class="collection-nav"></nav>
+        <button id="add-collection-side" class="sidebar-add" type="button"><span aria-hidden="true">＋</span> 新建收藏夹</button>
+        <div class="sidebar-foot"><span class="local-dot" aria-hidden="true"></span> 保存在此浏览器</div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">你的网页工作台</div>
+            <h1>我的收藏</h1>
+          </div>
+          <div class="topbar-actions">
+            <span id="collection-count" class="count-label"></span>
+            <button id="add-collection" class="primary-button" type="button"><span aria-hidden="true">＋</span> 新建收藏夹</button>
+          </div>
+        </header>
+        <div class="main-toolbar">
+          <div id="view-caption">全部收藏</div>
+          <div class="toolbar-right">
+            <span id="item-count"></span>
+            <button id="toggle-tabs" class="quiet-button" type="button" aria-controls="open-tabs">打开的标签页</button>
+          </div>
+        </div>
+        <div id="collections" class="collections" aria-live="polite"></div>
+      </main>
+
+      <aside id="open-tabs" class="tabs-panel" aria-label="打开的标签页">
+        <div class="tabs-header">
+          <div><div class="eyebrow">当前窗口</div><h2>打开的标签页</h2></div>
+          <div class="tabs-header-actions"><span id="tab-count" class="tab-count">0</span><button id="close-tabs" class="icon-button" type="button" aria-label="关闭标签页列表">×</button></div>
+        </div>
+        <div id="tabs-list" class="tabs-list"></div>
+        <div class="tabs-footer"><button id="refresh-tabs" class="quiet-button" type="button">刷新列表</button></div>
+      </aside>
+    </div>
+
+    <dialog id="collection-dialog" class="collection-dialog">
+      <form id="collection-form" method="dialog">
+        <div class="dialog-heading"><h2 id="dialog-title">新建收藏夹</h2><button id="cancel-dialog" class="icon-button" type="button" aria-label="关闭">×</button></div>
+        <label for="collection-name">名称</label>
+        <input id="collection-name" maxlength="40" required placeholder="例如：设计灵感" />
+        <div class="color-label">颜色</div>
+        <div id="color-picker" class="color-picker" role="group" aria-label="收藏夹颜色"></div>
+        <div class="dialog-actions"><button id="delete-collection" class="danger-button" type="button" hidden>删除收藏夹</button><span class="spacer"></span><button class="primary-button" type="submit">保存</button></div>
+      </form>
+    </dialog>
+    <dialog id="link-dialog" class="collection-dialog">
+      <form id="link-form" method="dialog">
+        <div class="dialog-heading"><h2>添加网页</h2><button id="cancel-link-dialog" class="icon-button" type="button" aria-label="关闭">×</button></div>
+        <label for="link-url">网址</label>
+        <input id="link-url" type="url" required placeholder="https://example.com" />
+        <label for="link-title">标题 <span class="optional">选填</span></label>
+        <input id="link-title" maxlength="160" placeholder="网页标题" />
+        <div class="dialog-actions"><span class="spacer"></span><button class="primary-button" type="submit">添加网页</button></div>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

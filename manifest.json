@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Gather Tabs",
+  "version": "0.1.0",
+  "description": "Drag open tabs and links into collections on your new tab page.",
+  "permissions": ["storage", "tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Gather Tabs"
+  },
+  "chrome_url_overrides": {
+    "newtab": "dashboard.html"
+  }
+}
