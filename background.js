@@ -1,5 +1,6 @@
 const extensionApi = globalThis.browser ?? globalThis.chrome;
 
 extensionApi.action.onClicked.addListener(() => {
-  extensionApi.tabs.create({ url: extensionApi.runtime.getURL("dashboard.html") });
+  const page = extensionApi.runtime.getManifest().chrome_url_overrides.newtab;
+  extensionApi.tabs.create({ url: extensionApi.runtime.getURL(page) });
 });

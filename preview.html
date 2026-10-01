@@ -1,18 +1,13 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head><meta charset="UTF-8" /><title>Gather Tabs Preview</title></head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Gather Tabs Preview</title>
+  </head>
   <body>
-    <script>
-      fetch("dashboard.html")
-        .then((response) => response.text())
-        .then((html) => {
-          document.open();
-          document.write(html.replace(
-            '<script type="module" src="dashboard.js"><\/script>',
-            '<script src="preview-mock.js"><\/script><script type="module" src="dashboard.js"><\/script>'
-          ));
-          document.close();
-        });
-    </script>
+    <div id="app"></div>
+    <script type="module" src="/preview-entry.js"></script>
   </body>
 </html>

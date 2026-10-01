@@ -1,12 +1,23 @@
 export const STORAGE_KEY = "gatherTabsState";
 
+const updatedDefaults = {
+  inbox: { old: "#dc665f", current: "#98697e" },
+  reading: { old: "#358479", current: "#76578a" },
+  projects: { old: "#6673ae", current: "#8c791e" }
+};
+
+function collectionColor(id, color) {
+  const saved = typeof color === "string" ? color : "#76578a";
+  return saved === updatedDefaults[id]?.old ? updatedDefaults[id].current : saved;
+}
+
 export function initialState() {
   return {
     version: 1,
     collections: [
-      { id: "inbox", name: "收件箱", color: "#dc665f", items: [] },
-      { id: "reading", name: "稍后阅读", color: "#358479", items: [] },
-      { id: "projects", name: "项目", color: "#6673ae", items: [] }
+      { id: "inbox", name: "收件箱", color: "#98697e", items: [] },
+      { id: "reading", name: "稍后阅读", color: "#76578a", items: [] },
+      { id: "projects", name: "项目", color: "#8c791e", items: [] }
     ]
   };
 }
@@ -20,7 +31,7 @@ export function normalizeState(value) {
       .map((collection) => ({
         id: collection.id,
         name: typeof collection.name === "string" ? collection.name : "未命名",
-        color: typeof collection.color === "string" ? collection.color : "#6673ae",
+        color: collectionColor(collection.id, collection.color),
         items: Array.isArray(collection.items) ? collection.items.filter((item) => item && item.url) : []
       }))
   };
